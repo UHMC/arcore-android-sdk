@@ -207,7 +207,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
         mBackgroundRenderer.createOnGlThread(/*context=*/this);
         mSession.setCameraTextureName(mBackgroundRenderer.getTextureId());
 
-        // Prepare the other rendering objects.
+        // Prepare the other rendering objects. /*POINT_OF_INTEREST_VIRTUAL_OBJECT_PREPARATION*/
         try {
             virtualObjects.add(new ObjectRenderer());
             virtualObjects.get(0).createOnGlThread(/*context=*/this, "andy.obj", "andy.png");
@@ -261,7 +261,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
                 for (HitResult hit : frame.hitTest(tap)) {
                     // Check if any plane was hit, and if it was hit inside the plane polygon.
                     if (hit instanceof PlaneHitResult && ((PlaneHitResult) hit).isHitInPolygon()) {
-                        // Cap the number of objects created. This avoids overloading both the
+                        // Cap the number of objects created. This avoids overloading both the /*POINT_OF_INTEREST_OBJECT_LIMIT*/
                         // rendering system and ARCore.
                         if (mTouches.size() >= 16) {
                             mSession.removeAnchors(Arrays.asList(mTouches.get(0).getAnchor()));
