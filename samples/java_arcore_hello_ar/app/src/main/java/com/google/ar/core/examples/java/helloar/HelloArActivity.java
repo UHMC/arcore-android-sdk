@@ -33,10 +33,15 @@ import com.google.ar.core.examples.java.helloar.rendering.PointCloudRenderer;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -55,7 +60,7 @@ import javax.microedition.khronos.opengles.GL10;
  * the ARCore API. The application will display any detected planes and will allow the user to
  * tap on a plane to place a 3d model of the Android robot.
  */
-public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.Renderer {
+public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.Renderer, NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = HelloArActivity.class.getSimpleName();
 
     // Rendering. The Renderers are created here, and initialized when the GL surface is created.
@@ -95,7 +100,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
             return;
         }
 
-        // Set up tap listener.
+        // Set up tap listeners.
         mGestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
@@ -115,6 +120,9 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
                 return mGestureDetector.onTouchEvent(event);
             }
         });
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         // Set up renderer.
         mSurfaceView.setPreserveEGLContextOnPause(true);
@@ -335,5 +343,35 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
                 mLoadingMessageSnackbar = null;
             }
         });
+    }
+
+    /**
+     * Called when an item in the navigation menu is selected.
+     *
+     * @param item The selected item
+     * @return true to display the item as the selected item
+     */
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        /*} else if (id == R.id.nav_slideshow) {*/
+
+        } else if (id == R.id.nav_manage) {
+
+        /*} else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {*/
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
