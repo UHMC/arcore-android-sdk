@@ -24,8 +24,8 @@ import com.google.ar.core.Pose;
  * from the anchor updates.
  */
 public class PlaneAttachment {
-    protected final Plane mPlane;
-    protected final Anchor mAnchor;
+    protected Plane mPlane;
+    protected Anchor mAnchor;
 
     // Allocate temporary storage to avoid multiple allocations per frame.
     private final float[] mPoseTranslation = new float[3];
