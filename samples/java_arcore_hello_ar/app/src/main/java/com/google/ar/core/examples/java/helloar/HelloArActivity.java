@@ -72,9 +72,11 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
     private BackgroundRenderer mBackgroundRenderer = new BackgroundRenderer();
     private GestureDetector mGestureDetector;
     private Snackbar mLoadingMessageSnackbar = null;
+    // Default is 0, which is andy.obj
+    private int itemSelectedIndex = 0;
 
-    private ObjectRenderer mVirtualObject = new ObjectRenderer();
-    private ObjectRenderer mVirtualObjectShadow = new ObjectRenderer();
+    //    private ObjectRenderer mVirtualObject = new ObjectRenderer();
+//    private ObjectRenderer mVirtualObjectShadow = new ObjectRenderer();
     private PlaneRenderer mPlaneRenderer = new PlaneRenderer();
     private PointCloudRenderer mPointCloud = new PointCloudRenderer();
 
@@ -83,14 +85,16 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 
     // Tap handling and UI.
     private ArrayBlockingQueue<MotionEvent> mQueuedSingleTaps = new ArrayBlockingQueue<>(16);
-    private ArrayList<PlaneAttachment> mTouches = new ArrayList<>();
+    private ArrayList<ObjectAwarePlaneAttachment> mTouches = new ArrayList<>();
+    private ArrayList<ObjectRenderer> virtualObjects = new ArrayList<>();
 
     public class ObjectAwarePlaneAttachment extends PlaneAttachment {
         private ObjectRenderer object;
 
-        public PlaneAttachment(Plane plane, Anchor anchor, ObjectRenderer obj) {
-            mPlane = plane;
-            mAnchor = anchor;
+        public ObjectAwarePlaneAttachment(Plane plane, Anchor anchor, ObjectRenderer obj) {
+            super(plane, anchor);
+            this.mPlane = plane;
+            this.mAnchor = anchor;
             object = obj;
         }
 
@@ -213,13 +217,14 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 
         // Prepare the other rendering objects.
         try {
-            mVirtualObject.createOnGlThread(/*context=*/this, "andy.obj", "andy.png");
-            mVirtualObject.setMaterialProperties(0.0f, 3.5f, 1.0f, 6.0f);
-
-            mVirtualObjectShadow.createOnGlThread(/*context=*/this,
-                    "andy_shadow.obj", "andy_shadow.png");
-            mVirtualObjectShadow.setBlendMode(BlendMode.Shadow);
-            mVirtualObjectShadow.setMaterialProperties(1.0f, 0.0f, 0.0f, 1.0f);
+            virtualObjects.add(new ObjectRenderer());
+            virtualObjects.get(0).createOnGlThread(/*context=*/this, "andy.obj", "andy.png");
+            virtualObjects.get(0).setMaterialProperties(0.0f, 3.5f, 1.0f, 6.0f);
+            // No shadows for now
+//            mVirtualObjectShadow.createOnGlThread(/*context=*/this,
+//                    "andy_shadow.obj", "andy_shadow.png");
+//            mVirtualObjectShadow.setBlendMode(BlendMode.Shadow);
+//            mVirtualObjectShadow.setMaterialProperties(1.0f, 0.0f, 0.0f, 1.0f);
         } catch (IOException e) {
             Log.e(TAG, "Failed to read obj file");
         }
@@ -266,9 +271,9 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
                         // Adding an Anchor tells ARCore that it should track this position in
                         // space. This anchor will be used in PlaneAttachment to place the 3d model
                         // in the correct position relative both to the world and to the plane.
-                        mTouches.add(new PlaneAttachment(
+                        mTouches.add(new ObjectAwarePlaneAttachment(
                                 ((PlaneHitResult) hit).getPlane(),
-                                mSession.addAnchor(hit.getHitPose())));
+                                mSession.addAnchor(hit.getHitPose()), virtualObjects.get(itemSelectedIndex)));
 
                         // Hits are sorted by depth. Consider only closest hit on a plane.
                         break;
@@ -315,7 +320,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 
             // Visualize anchors created by touch.
             float scaleFactor = 1.0f;
-            for (PlaneAttachment planeAttachment : mTouches) {
+            for (ObjectAwarePlaneAttachment planeAttachment : mTouches) {
                 if (!planeAttachment.isTracking()) {
                     continue;
                 }
@@ -325,10 +330,10 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
                 planeAttachment.getPose().toMatrix(mAnchorMatrix, 0);
 
                 // Update and draw the model and its shadow.
-                mVirtualObject.updateModelMatrix(mAnchorMatrix, scaleFactor);
-                mVirtualObjectShadow.updateModelMatrix(mAnchorMatrix, scaleFactor);
-                mVirtualObject.draw(viewmtx, projmtx, lightIntensity);
-                mVirtualObjectShadow.draw(viewmtx, projmtx, lightIntensity);
+                planeAttachment.getObject().updateModelMatrix(mAnchorMatrix, scaleFactor);
+//                mVirtualObjectShadow.updateModelMatrix(mAnchorMatrix, scaleFactor);
+                planeAttachment.getObject().draw(viewmtx, projmtx, lightIntensity);
+//                mVirtualObjectShadow.draw(viewmtx, projmtx, lightIntensity);
             }
 
         } catch (Throwable t) {
