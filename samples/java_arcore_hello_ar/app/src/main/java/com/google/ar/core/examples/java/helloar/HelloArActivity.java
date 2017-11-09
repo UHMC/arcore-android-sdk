@@ -72,8 +72,8 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
     private BackgroundRenderer mBackgroundRenderer = new BackgroundRenderer();
     private GestureDetector mGestureDetector;
     private Snackbar mLoadingMessageSnackbar = null;
-    // Default is 0, which is andy.obj
-    private int itemSelectedIndex = 0;
+    //default is -1; signifies no object has been selected yet
+    private int itemSelectedIndex=-1;
 
     //    private ObjectRenderer mVirtualObject = new ObjectRenderer();
 //    private ObjectRenderer mVirtualObjectShadow = new ObjectRenderer();
@@ -205,6 +205,10 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
     private void onSingleTap(MotionEvent e) {
         // Queue tap if there is space. Tap is lost if queue is full.
         mQueuedSingleTaps.offer(e);
+        if(itemSelectedIndex==-1){//no object selected yet; open main menu
+            DrawerLayout drawer=(DrawerLayout)findViewById(R.id.drawer_layout);
+            if(!drawer.isDrawerOpen(GravityCompat.START))drawer.openDrawer(GravityCompat.START);
+        }
     }
 
     @Override
