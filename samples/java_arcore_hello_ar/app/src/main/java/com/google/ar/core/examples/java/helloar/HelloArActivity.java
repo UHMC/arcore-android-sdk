@@ -74,6 +74,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
     private Snackbar mLoadingMessageSnackbar = null;
     //default is -1; signifies no object has been selected yet
     private int itemSelectedIndex=-1;
+    private float objectScale = 1.0f;
 
     //    private ObjectRenderer mVirtualObject = new ObjectRenderer();
 //    private ObjectRenderer mVirtualObjectShadow = new ObjectRenderer();
@@ -90,16 +91,26 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 
     public class ObjectAwarePlaneAttachment extends PlaneAttachment {
         private ObjectRenderer object;
+        private float scaleFactor;
 
-        public ObjectAwarePlaneAttachment(Plane plane, Anchor anchor, ObjectRenderer obj) {
+        public ObjectAwarePlaneAttachment(Plane plane, Anchor anchor, ObjectRenderer obj, float objectScale) {
             super(plane, anchor);
             this.mPlane = plane;
             this.mAnchor = anchor;
             object = obj;
+            scaleFactor = objectScale;
         }
 
         public ObjectRenderer getObject() {
             return object;
+        }
+
+        public void setScaleFactor(float s) {
+            scaleFactor = s;
+        }
+
+        public float getScaleFactor() {
+            return scaleFactor;
         }
     }
 
@@ -284,7 +295,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
                         // in the correct position relative both to the world and to the plane.
                         mTouches.add(new ObjectAwarePlaneAttachment(
                                 ((PlaneHitResult) hit).getPlane(),
-                                mSession.addAnchor(hit.getHitPose()), virtualObjects.get(itemSelectedIndex)));
+                                mSession.addAnchor(hit.getHitPose()), virtualObjects.get(itemSelectedIndex), objectScale));
 
                         // Hits are sorted by depth. Consider only closest hit on a plane.
                         break;
@@ -330,7 +341,6 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
             mPlaneRenderer.drawPlanes(mSession.getAllPlanes(), frame.getPose(), projmtx);
 
             // Visualize anchors created by touch.
-            float scaleFactor = 1.0f;
             for (ObjectAwarePlaneAttachment planeAttachment : mTouches) {
                 if (!planeAttachment.isTracking()) {
                     continue;
@@ -341,7 +351,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
                 planeAttachment.getPose().toMatrix(mAnchorMatrix, 0);
 
                 // Update and draw the model and its shadow.
-                planeAttachment.getObject().updateModelMatrix(mAnchorMatrix, scaleFactor);
+                planeAttachment.getObject().updateModelMatrix(mAnchorMatrix, planeAttachment.getScaleFactor());
 //                mVirtualObjectShadow.updateModelMatrix(mAnchorMatrix, scaleFactor);
                 planeAttachment.getObject().draw(viewmtx, projmtx, lightIntensity);
 //                mVirtualObjectShadow.draw(viewmtx, projmtx, lightIntensity);
@@ -403,8 +413,10 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
