@@ -31,6 +31,8 @@ import com.google.ar.core.examples.java.helloar.rendering.PlaneAttachment;
 import com.google.ar.core.examples.java.helloar.rendering.PlaneRenderer;
 import com.google.ar.core.examples.java.helloar.rendering.PointCloudRenderer;
 
+import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
@@ -63,6 +65,7 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.Renderer, NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = HelloArActivity.class.getSimpleName();
+    public static Bundle HelloArActivityBundle = new Bundle();
 
     // Rendering. The Renderers are created here, and initialized when the GL surface is created.
     private GLSurfaceView mSurfaceView;
@@ -119,6 +122,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSurfaceView = (GLSurfaceView) findViewById(R.id.surfaceview);
+
 
         mSession = new Session(/*context=*/this);
 
@@ -398,13 +402,11 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
-        /*} else if (id == R.id.nav_gallery) {*/
-
-        /*} else if (id == R.id.nav_slideshow) {*/
 
         } else if (id == R.id.nav_manage) {
-
+            FragmentManager fm = getFragmentManager();
+            adjustmentDialog dialogFragment = new adjustmentDialog();
+            dialogFragment.show(fm, "Sample Fragment");
         } else if (id == R.id.nav_share) {
             itemSelectedIndex = 0;
         } else if (id == R.id.nav_send) {
@@ -426,4 +428,12 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
             super.onBackPressed();
         }
     }
+
+    public float getObjectScale() {
+        return objectScale;
+    }
+    public void setObjectScale(float scale){
+        objectScale = scale;
+    }
+
 }
