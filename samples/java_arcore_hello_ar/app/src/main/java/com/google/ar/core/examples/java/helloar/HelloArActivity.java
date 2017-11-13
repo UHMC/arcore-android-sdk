@@ -405,8 +405,8 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 
         } else if (id == R.id.nav_manage) {
             FragmentManager fm = getFragmentManager();
-            adjustmentDialog dialogFragment = new adjustmentDialog();
-            dialogFragment.show(fm, "Sample Fragment");
+            AdjustmentDialog adjustmentDialog = new AdjustmentDialog();
+            adjustmentDialog.show(fm, "Sample Fragment");
         } else if (id == R.id.nav_share) {
             itemSelectedIndex = 0;
         } else if (id == R.id.nav_send) {

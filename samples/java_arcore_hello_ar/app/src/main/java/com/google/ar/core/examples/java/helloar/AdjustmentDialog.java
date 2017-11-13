@@ -12,7 +12,7 @@ import android.widget.EditText;
  * Created by index on 11/11/17.
  */
 
-public class adjustmentDialog extends DialogFragment {
+public class AdjustmentDialog extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
