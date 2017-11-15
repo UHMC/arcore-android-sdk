@@ -25,6 +25,7 @@ import com.google.ar.core.Plane;
 import com.google.ar.core.PlaneHitResult;
 import com.google.ar.core.Session;
 import com.google.ar.core.examples.java.helloar.rendering.BackgroundRenderer;
+import com.google.ar.core.examples.java.helloar.rendering.ObjectAwarePlaneAttachment;
 import com.google.ar.core.examples.java.helloar.rendering.ObjectRenderer;
 import com.google.ar.core.examples.java.helloar.rendering.ObjectRenderer.BlendMode;
 import com.google.ar.core.examples.java.helloar.rendering.PlaneAttachment;
@@ -91,31 +92,6 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
     private ArrayBlockingQueue<MotionEvent> mQueuedSingleTaps = new ArrayBlockingQueue<>(16);
     private ArrayList<ObjectAwarePlaneAttachment> mTouches = new ArrayList<>();
     private ArrayList<ObjectRenderer> virtualObjects = new ArrayList<>();
-
-    public class ObjectAwarePlaneAttachment extends PlaneAttachment {
-        private ObjectRenderer object;
-        private float scaleFactor;
-
-        public ObjectAwarePlaneAttachment(Plane plane, Anchor anchor, ObjectRenderer obj, float objectScale) {
-            super(plane, anchor);
-            this.mPlane = plane;
-            this.mAnchor = anchor;
-            object = obj;
-            scaleFactor = objectScale;
-        }
-
-        public ObjectRenderer getObject() {
-            return object;
-        }
-
-        public void setScaleFactor(float s) {
-            scaleFactor = s;
-        }
-
-        public float getScaleFactor() {
-            return scaleFactor;
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
