@@ -218,11 +218,12 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
     }
 
     private void onSingleTap(MotionEvent e) {
-        // Queue tap if there is space. Tap is lost if queue is full.
-        mQueuedSingleTaps.offer(e);
         if(itemSelectedIndex==-1){//no object selected yet; open main menu
             DrawerLayout drawer=(DrawerLayout)findViewById(R.id.drawer_layout);
             if(!drawer.isDrawerOpen(GravityCompat.START))drawer.openDrawer(GravityCompat.START);
+        }else{
+            // Queue tap if there is space. Tap is lost if queue is full.
+            mQueuedSingleTaps.offer(e);
         }
     }
 
