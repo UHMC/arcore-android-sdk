@@ -16,7 +16,6 @@
 
 package com.google.ar.core.examples.java.helloar;
 
-import com.google.ar.core.Anchor;
 import com.google.ar.core.Config;
 import com.google.ar.core.Frame;
 import com.google.ar.core.Frame.TrackingState;
@@ -27,12 +26,9 @@ import com.google.ar.core.Session;
 import com.google.ar.core.examples.java.helloar.rendering.BackgroundRenderer;
 import com.google.ar.core.examples.java.helloar.rendering.ObjectAwarePlaneAttachment;
 import com.google.ar.core.examples.java.helloar.rendering.ObjectRenderer;
-import com.google.ar.core.examples.java.helloar.rendering.ObjectRenderer.BlendMode;
-import com.google.ar.core.examples.java.helloar.rendering.PlaneAttachment;
 import com.google.ar.core.examples.java.helloar.rendering.PlaneRenderer;
 import com.google.ar.core.examples.java.helloar.rendering.PointCloudRenderer;
 
-import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;

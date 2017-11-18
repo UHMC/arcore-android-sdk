@@ -7,24 +7,23 @@ public class ObjectAwarePlaneAttachment extends PlaneAttachment {
     private ObjectRenderer object;
     private float scaleFactor;
 
-    public ObjectAwarePlaneAttachment(Plane plane, Anchor anchor, ObjectRenderer obj, float objectScale) {
+    public ObjectAwarePlaneAttachment(Plane plane, Anchor anchor, ObjectRenderer object, float scaleFactor) {
         super(plane, anchor);
         this.mPlane = plane;
         this.mAnchor = anchor;
-        object = obj;
-        scaleFactor = objectScale;
-        }
+        this.object = object;
+        this.scaleFactor = scaleFactor;
+    }
 
-        public ObjectRenderer getObject() {
-            return object;
-        }
+    public ObjectRenderer getObject() {
+        return object;
+    }
 
-        public void setScaleFactor(float s) {
-            scaleFactor = s;
-        }
+    public void setScaleFactor(float s) {
+        scaleFactor = s;
+    }
 
-        public float getScaleFactor() {
-            return scaleFactor;
-        }
+    public float getScaleFactor() {
+        return scaleFactor;
     }
 }
