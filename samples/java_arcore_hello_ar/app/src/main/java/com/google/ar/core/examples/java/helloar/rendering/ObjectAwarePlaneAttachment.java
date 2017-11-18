@@ -19,8 +19,8 @@ public class ObjectAwarePlaneAttachment extends PlaneAttachment {
         return object;
     }
 
-    public void setScaleFactor(float s) {
-        scaleFactor = s;
+    public void setScaleFactor(float scaleFactor) {
+        this.scaleFactor = scaleFactor;
     }
 
     public float getScaleFactor() {
