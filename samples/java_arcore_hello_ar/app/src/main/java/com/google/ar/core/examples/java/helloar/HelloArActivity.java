@@ -56,9 +56,9 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 /**
- * This is a simple example that shows how to create an augmented reality (AR) application using
+ * This (was) a simple example that showed how to create an augmented reality (AR) application using
  * the ARCore API. The application will display any detected planes and will allow the user to
- * tap on a plane to place a 3d model of the Android robot.
+ * tap on a plane to place one of the available 3d models and also adjust its rotation.
  */
 public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.Renderer, NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = HelloArActivity.class.getSimpleName();
@@ -77,7 +77,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
     private float objectScale = 1.0f;
 
     //    private ObjectRenderer mVirtualObject = new ObjectRenderer();
-//    private ObjectRenderer mVirtualObjectShadow = new ObjectRenderer();
+    //    private ObjectRenderer mVirtualObjectShadow = new ObjectRenderer();
     private PlaneRenderer mPlaneRenderer = new PlaneRenderer();
     private PointCloudRenderer mPointCloud = new PointCloudRenderer();
 
