@@ -6,9 +6,9 @@ Copyright (c) 2017 Google Inc.  All rights reserved.
 
 Please note, we do not accept pull requests.
 
-# UHMC Augmented Reality Demo using AR CORE
+# University of Hawaii Maui College AR Demo
 #### Introduction
-This project is an extension of Google's AR Core demo app with additional features requested by students enrolled in the ABIT program under Debasis Bhattacharya. This project will serve as a way for these students to market their business ideas using emerging augmented reality technology.
+This project is an extension of Google's AR Core demo app with additional features requested by students enrolled in the ABIT program under Debasis Bhattacharya at UHMC. This project will serve as a way for these students to market their business ideas using emerging augmented reality technology.
 #### System Requirements
 * Google Pixel, Pixel XL, Pixel 2, Pixel 2 XL
 * Samsung Galaxy S8 (SM-G950U, SM-G950N, SM-G950F, SM-G950FD, SM-G950W, SM-G950U1)
@@ -26,7 +26,7 @@ The libraries are in included in the git tree, just import the project to Androi
 	1. Currently, the object will be placed facing the camera. Rotation is still a work in progress, but for now that can be bypassed by placing the object in whatever orientation the camera is facing.  
 
 #### Screenshots
-_To be populated_
+
 #### Credits
 * [Debasis Bhattacharya](mailto:debasisb@hawaii.edu) - Project Supervisor
 * [Mario Canul](mailto:mcanul@hawaii.edu) - Undergraduate Cybersecurity Researcher
