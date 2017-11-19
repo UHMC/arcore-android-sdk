@@ -13,17 +13,17 @@ This project is an extension of Google's AR Core demo app with additional featur
 * Google Pixel, Pixel XL, Pixel 2, Pixel 2 XL
 * Samsung Galaxy S8 (SM-G950U, SM-G950N, SM-G950F, SM-G950FD, SM-G950W, SM-G950U1)
 #### Dependencies
-The libraries are in included in the git tree, just import the project to Android Studio and run. 
+The AR libraries are included in the git tree; just import the project to Android Studio and run.
 
 #### Application usage / Workflow
 1. Open the app and allow camera permissions.
-2. Face the camera on a surface that you wish to place objects on.
-3. When a surface is found, click anywhere on it and the menu will open.
+2. Focus the camera on a surface that you wish to place objects on.
+3. When the app finds a surface, tap anywhere on the screen and the menu will open (swipe from left edge to access the menu again).
 4. If you wish to change the object's size, it can be done in the "Adjustments" tab, otherwise select the asset.
-	1. Currently, the object size is determined by a scaling factor. So the object will increase in size in all directions based on this scale. 
-	2. Scale needs to be changed before the object is placed.
-5. Tap the surface wherever you wish to place the object. 
-	1. Currently, the object will be placed facing the camera. Rotation is still a work in progress, but for now that can be bypassed by placing the object in whatever orientation the camera is facing.  
+	1. Currently, the object size is determined by a scaling factor, so the object will increase in size in all three dimensions based on this scale.
+	2. Scale needs to be changed before the object is placed to take effect (default is 1).
+5. Tap the surface wherever you wish to place the object.
+	1. Currently, the object will be placed facing the camera. Rotation is still a work in progress, but for now, the workaround is moving the camera so that the object faces the desired direction.
 
 #### Screenshots
 
