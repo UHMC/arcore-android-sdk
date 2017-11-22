@@ -1,11 +1,3 @@
-Google AR SDK
-=====================
-Copyright (c) 2017 Google Inc.  All rights reserved.
-
-[https://developers.google.com/ar/develop/java/getting-started](https://developers.google.com/ar/develop/java/getting-started)
-
-Please note, we do not accept pull requests.
-
 # University of Hawaii Maui College AR Demo
 #### Introduction
 This project is an extension of Google's AR Core demo app with additional features requested by students enrolled in the ABIT program under Debasis Bhattacharya at UHMC. This project will serve as a way for these students to market their business ideas using emerging augmented reality technology.
