@@ -30,4 +30,7 @@ The AR libraries are included in the git tree; just import the project to Androi
 * [Debasis Bhattacharya](mailto:debasisb@hawaii.edu) - Project Supervisor
 * [Mario Canul](mailto:mcanul@hawaii.edu) - Undergraduate Cybersecurity Researcher
 * [Saxon Knight](mailto:knight7@hawaii.edu) - Undergraduate Cybersecurity Researcher
-* [National Science Foundation](http://nsf.gov) - This project is possible thanks to the funding support of the National Science Foundation
+* [National Science Foundation](https://nsf.gov) - This project is 
+possible thanks to the funding support of the National Science Foundation
+* [Google AR Core](https://github.com/google-ar/arcore-android-sdk) - Forked 
+from Google's AR Core Demo
