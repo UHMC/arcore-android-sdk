@@ -17,6 +17,15 @@ The AR libraries are included in the git tree; just import the project to Androi
 5. Tap the surface wherever you wish to place the object.
 	1. Currently, the object will be placed facing the camera. Rotation is still a work in progress, but for now, the workaround is moving the camera so that the object faces the desired direction.
 
+#### Developer notes
+Object assets are placed under /samples/java_arcore_hello_ar/app/src/main/assets
+
+Main project file is located under 
+/samples/java_arcore_hello_ar/app/src/main/java/com/google/ar/core/examples/java/helloar/HelloArActivity.java
+
+Custom PlaneAttachment class is under 
+/samples/java_arcore_hello_ar/app/src/main/java/com/google/ar/core/examples/java/helloar/rendering/ObjectAwarePlaneAttachment.java
+
 #### Screenshots
 ![Searching for surfaces](/screenshots/screen1.png)
 ![Surface found](/screenshots/screen2.png)
