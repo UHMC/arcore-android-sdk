@@ -18,7 +18,14 @@ The AR libraries are included in the git tree; just import the project to Androi
 	1. Currently, the object will be placed facing the camera. Rotation is still a work in progress, but for now, the workaround is moving the camera so that the object faces the desired direction.
 
 #### Screenshots
-
+![Searching for surfaces](/screenshots/screen1.png)
+![Surface found](/screenshots/screen2.png)
+![Tabula Rasa](/screenshots/screen3.png)
+![Another angle](/screenshots/screen4.png)
+![Object scale](/screenshots/screen5.png)
+![Tiny table](/screenshots/screen6.png)
+![Andy in different sizes](/screenshots/screen7.png)
+![Menu display](/screenshots/screen8.png)
 #### Credits
 * [Debasis Bhattacharya](mailto:debasisb@hawaii.edu) - Project Supervisor
 * [Mario Canul](mailto:mcanul@hawaii.edu) - Undergraduate Cybersecurity Researcher
