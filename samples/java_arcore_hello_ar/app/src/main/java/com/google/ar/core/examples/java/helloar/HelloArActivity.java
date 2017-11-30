@@ -228,6 +228,13 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
             Log.e(TAG, "Failed to read obj file");
         }
         try {
+            virtualObjects.add(new ObjectRenderer());
+            virtualObjects.get(2).createOnGlThread(this, "bed.obj", "tabularasa.png");
+            virtualObjects.get(2).setMaterialProperties(0.0f, 3.5f, 1.0f, 6.0f);
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to read obj file");
+        }
+        try {
             mPlaneRenderer.createOnGlThread(/*context=*/this, "trigrid.png");
         } catch (IOException e) {
             Log.e(TAG, "Failed to read plane texture");
@@ -384,6 +391,8 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
             itemSelectedIndex = 0;
         } else if (id == R.id.nav_send) {
             itemSelectedIndex = 1;
+        } else if (id == R.id.bed) {
+            itemSelectedIndex = 2;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
