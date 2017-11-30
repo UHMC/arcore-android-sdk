@@ -34,6 +34,9 @@
                 <item
                     android:id="@+id/bed"
                     android:title="Bed (Beddy Bop)" />
+                <item
+                    android:id="@+id/dresser"
+                    android:title="Dresser (Ol' Dressy)" />
 
             </group>
         </menu>
